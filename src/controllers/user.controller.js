@@ -123,7 +123,7 @@ export const updateUserByID = async (req, res) => {
 }
 
 //funcion controladora que elimina usuario por id
-export const deleteTaskById = async (req, res) => {
+export const deleteUserById = async (req, res) => {
     try {
         const userToDeleteId = Number(req.params.id)
         await User.destroy(
