@@ -10,14 +10,10 @@ export const database = new Sequelize("tasks_users_db", "root", "", {
 //testear la conexión con bd
 export const rundb = async () => {
     try {
-        await db.authenticate()
-        await db.sync({force: false})
-        res.status(200).json({
-            message: "Conexión con la base de datos exitosa"
-        })
+        await database.authenticate()
+        await database.sync({force: false})
+        console.log("Se conectó a la base de datos con éxito")
     } catch(error) {
-        res.status(500).json({
-            message: "Error al conectar con la base de datos"
-        })
+        console.error("Error: no se pudo conectar con la base de datos", error)
     }
 }
