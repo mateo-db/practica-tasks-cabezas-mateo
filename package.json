@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node --watch app.js"
+    "dev": "node --watch --import dotenv/config app.js"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/mateo-db/practica-tasks-cabezas-mateo/issues"
   },
-  "homepage": "https://github.com/mateo-db/practica-tasks-cabezas-mateo#readme"
+  "homepage": "https://github.com/mateo-db/practica-tasks-cabezas-mateo#readme",
+  "dependencies": {
+    "dotenv": "^17.4.2"
+  }
 }
