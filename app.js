@@ -1,5 +1,6 @@
 //importamos herramienta desde libreria para trabajar con expres
 import express from 'express';
+import 'dotenv/config'
 
 //importamos función de arranque de bd, modelos y enrutadores
 import { rundb } from './src/config/database.js'
@@ -18,7 +19,7 @@ app.use(express.json())
 app.use(userRouter)
 app.use(taskRouter)
 
-const PORT = 3000
+const PORT = process.env.PORT
 
 //dejamos al servidor en "escucha"
 app.listen(PORT, async () => {
