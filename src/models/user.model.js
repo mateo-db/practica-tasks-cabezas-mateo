@@ -22,3 +22,21 @@ export const User = database.define("User", {
         allowNull: false,
     }
 })
+
+//relacion 1:1 entre modelos profile y user
+//un perfil le pertenece a un usuario
+Profile.belongsTo(User,
+    {
+        foreignKey: "user_id",
+        as: "user"
+    }
+)
+
+//y un usuario tiene un perfil
+User.hasOne(Profile,
+    {
+        foreignKey: "user_id",
+        as: "profile"
+    }
+)
+
