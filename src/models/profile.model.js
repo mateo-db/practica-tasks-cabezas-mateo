@@ -8,7 +8,15 @@ export const Profile = database.define("Profile", {
         autoIncrement: true
     },
     profileName: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(100),
         allowNull: false,
+    },
+    profilePic: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    profileBio: {
+        type: DataTypes.STRING(100),
+        allowNull: true
     }
 })
