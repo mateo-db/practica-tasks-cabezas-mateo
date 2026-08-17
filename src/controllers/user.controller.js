@@ -1,6 +1,7 @@
 //importamos herramientas de libreria express y variable a utilizar
 import express from 'express'
 import { User } from '../models/user.model.js'
+import { Task } from '../models/task.model.js'
 
 //funcion controladora que añade nuevo user
 export const addNewUser = async (req, res) => {
@@ -48,7 +49,7 @@ export const addNewUser = async (req, res) => {
 //funcion controladora que trae todos los usuarios
 export const getAllUsers = async (req, res) => {
     try {
-        const allUsers = awaitUser.findAll()
+        const allUsers = await User.findAll()
         return res.status(200).json({
             message: "Se encontraron todos los usuarios con éxito",
             allUsers
@@ -64,10 +65,10 @@ export const getAllUsers = async (req, res) => {
 export const getUserById = async (req, res) => {
     try {
         const userId = Number(req.params.id)
-        const userfoundById = await User.findByPk(userId)
+        const userFoundById = await User.findByPk(userId)
         return res.status(200).json({
             message: "Se obtuvo usuario por id con éxito",
-            userfoundById
+            userFoundById
         })
     } catch(error) {
         return res.status(500).json({
@@ -139,3 +140,53 @@ export const deleteUserById = async (req, res) => {
         })
     }
 } 
+
+//funcion controladora que trae todos los usuarios y sus tasks
+export const getAllUsersAndTheirTasks = async (req, res) => {
+    try {
+        const allUsersAndTheirTasks = await User.findAll({
+            attributes: {
+                exclude: ["password"]
+            },
+            include: [
+                {
+                    model: Task,
+                    as: "tareas"
+
+                }
+            ]
+        })
+        return res.status(200).json({
+            message: "Se encontraron todos los usuarios y sus tareas con éxito",
+            allUsersAndTheirTasks
+        })
+    } catch(error) {
+        return res.status(500).json({
+            message: "Error del servidor, no se pudo completar su petición"
+        })
+    }
+}
+
+//funcion controladora que obtiene usuario por su id y sus tareas
+export const getUserByIdAndTheirTasks = async (req, res) => {
+    try {
+        const userId = Number(req.params.id)
+        const userFoundByIdAndTheirTasks = await User.findByPk(userId, {
+            attributes: {
+                exclude: ["password"]
+            },
+            include: {
+                model: Task,
+                as: "tareas"
+            }
+        })
+        return res.status(200).json({
+            message: "Se obtuvo usuario por id y sus tareas con éxito",
+            userFoundByIdAndTheirTasks
+        })
+    } catch(error) {
+        return res.status(500).json({
+            message: "Error del servidor, no se pudo completar su petición"
+        })
+    }
+}
