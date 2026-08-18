@@ -36,3 +36,27 @@ export const createProfile = async (req, res) => {
     }
 }
 
+//funcion controladora que trae todos los perfiles, excluyendo sus biografias y fotos de perfil
+export const getAllProfiles = async (req, res) => {
+    try {
+        const allProfiles = await Profile.findAll({
+            attributes: {
+                exclude: [ profileBio, profilePic ]
+            },
+            include: [
+                {
+                    model: Profile,
+                    as: "profile"
+                }
+            ]
+        })
+        return res.status(200).json({
+            message: "Se encontraron todos los perfiles con éxito",
+            allProfiles
+        })
+    } catch(error) {
+        return res.status(500).json({
+            message: "Error del servidor, no se pudo completar su petición"
+        })
+    }
+}

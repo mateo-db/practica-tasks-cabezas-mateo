@@ -3,6 +3,7 @@ import express from 'express'
 import { Tag } from '../models/tag.model.js'
 import { Task } from '../models/task.model.js'
 import { TaskTag } from '../models/task_tag.model.js'
+import { User } from '../models/user.model.js'
 
 //funcion controladora que "crea" la asignación de un tag a un task
 export const assignTagToTask = async (req, res) => {
@@ -53,6 +54,41 @@ export const assignTagToTask = async (req, res) => {
     } catch (error) {
         return res.status(500).json({
             message: "Error interno del servidor, no pudimos procesar la petición"
+        })
+    }
+}
+
+//funcion controladora que trae todas las tasks y tags asociadas
+export const getAllTagTaskAssociations = async (req, res) => {
+    try {
+        const allTagTaskAssociations = await TaskTag.findAll({
+            attributes: [ task_id, tag_id ],
+            include: [
+                {
+                    model: Tag,
+                    as: "tag",
+                },
+                {
+                    model: Task,
+                    as: "task",
+                    
+                    include: [
+                        {
+                            model: User,
+                            as: "author",
+                            attributes: [ "id", "name", "email" ]
+                        }
+                    ]
+                },
+            ]
+        })
+        return res.status(200).json({
+            message: "Se encontraron todas las etiquetas y tareas asociadas con éxito",
+            allTagTaskAssociations
+        })
+    } catch(error) {
+        return res.status(500).json({
+            message: "Error del servidor, no se pudo completar su petición"
         })
     }
 }

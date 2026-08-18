@@ -36,3 +36,27 @@ export const createTag = async (req, res) => {
         })
     }
 }
+
+export const getAllTags = async (req, res) => {
+    try {
+        const allTags = await Tag.findAll({
+            attributes: {
+                exclude: [ tagComment ]
+            },
+            include: [
+                {
+                    model: Tag,
+                    as: "tag"
+                }
+            ]
+        })
+        return res.status(200).json({
+            message: "Se encontraron todas las etiquetas con éxito",
+            allTags
+        })
+    } catch(error) {
+        return res.status(500).json({
+            message: "Error del servidor, no se pudo completar su petición"
+        })
+    }
+}
