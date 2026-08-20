@@ -9,10 +9,10 @@ import { deleteTaskById } from '../controllers/task.controller.js'
 
 const taskRouter = express.Router()
 
-taskRouter.post('/api/tasks', addNewTask)
-taskRouter.get('/api/tasks', getAllTasks)
-taskRouter.get('/api/tasks/:id', getTaskById)
-taskRouter.put('/api/tasks/:id', updateTaskByID)
-taskRouter.delete('api/tasks/:id', deleteTaskById)
+taskRouter.post('/tasks', addNewTask)
+taskRouter.get('/tasks', getAllTasks)
+taskRouter.get('/tasks/:id', getTaskById)
+taskRouter.put('/tasks/:id', updateTaskByID)
+taskRouter.delete('/tasks/:id', deleteTaskById)
 
 export default taskRouter

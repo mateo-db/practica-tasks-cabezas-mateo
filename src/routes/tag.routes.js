@@ -6,7 +6,7 @@ import { getAllTags } from '../controllers/tag.controller.js'
 
 const tagRouter = express.Router()
 
-tagRouter.post('/api/tags', createTag)
-tagRouter.get('api/tags', getAllTags)
+tagRouter.post('/tags', createTag)
+tagRouter.get('/tags', getAllTags)
 
 export default tagRouter

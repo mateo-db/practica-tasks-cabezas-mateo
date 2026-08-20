@@ -11,11 +11,11 @@ import { deleteUserById } from '../controllers/user.controller.js'
 const userRouter = express.Router()
 
 //armamos rutas con sus metodos http respectivos
-userRouter.post('/api/users', addNewUser)
-userRouter.get('/api/users', getAllUsers)
-userRouter.get('/api/users/:id', getUserById)
-userRouter.put('/api/users/:id', updateUserByID)
-userRouter.delete('api/users/:id', deleteUserById)
+userRouter.post('/users', addNewUser)
+userRouter.get('/users', getAllUsers)
+userRouter.get('/users/:id', getUserById)
+userRouter.put('/users/:id', updateUserByID)
+userRouter.delete('/users/:id', deleteUserById)
 
 //exportamos router para importarlo despues en app.js
 export default userRouter

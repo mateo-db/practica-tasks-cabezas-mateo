@@ -6,7 +6,7 @@ import { getAllProfiles } from '../controllers/profile.controller.js'
 
 const profileRouter = express.Router()
 
-profileRouter.post('/api/profiles', createProfile)
-profileRouter.get('api/profiles', getAllProfiles)
+profileRouter.post('/profiles', createProfile)
+profileRouter.get('/profiles', getAllProfiles)
 
 export default profileRouter

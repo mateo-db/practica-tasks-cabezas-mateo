@@ -19,11 +19,11 @@ const app = express()
 app.use(express.json())
 
 //activamos los routers
-app.use("/api/users", userRouter)
-app.use("/api/tasks", taskRouter)
-app.use("/api/profiles", profileRouter)
-app.use("/api/tags", tagRouter)
-app.use("/api/task_tags", taskTagRouter)
+app.use("/api", userRouter)
+app.use("/api", taskRouter)
+app.use("/api", profileRouter)
+app.use("/api", tagRouter)
+app.use("/api", taskTagRouter)
 
 const PORT = process.env.PORT
 

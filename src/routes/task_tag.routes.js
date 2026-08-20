@@ -6,7 +6,7 @@ import { getAllTagTaskAssociations } from '../controllers/task_tag.controller.js
 
 const taskTagRouter = express.Router()
 
-taskTagRouter.post('/api/task_tags', assignTagToTask)
-taskTagRouter.get('api/task_tags', getAllTagTaskAssociations)
+taskTagRouter.post('/task_tags', assignTagToTask)
+taskTagRouter.get('/task_tags', getAllTagTaskAssociations)
 
 export default taskTagRouter
